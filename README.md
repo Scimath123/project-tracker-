@@ -13,7 +13,7 @@ Currently, two official plugins are available:
   
 
 
-## 🛠 Setup Instructions
+##  Setup Instructions
 
 bash
 # Clone the repository
@@ -73,7 +73,7 @@ For visual feedback, I used Tailwind CSS to:
 
 ---
 
-## 📝 The "Hardest UI Problem" Explanation
+##  The "Hardest UI Problem" Explanation
 
 The toughest challenge was combining **custom Drag-and-Drop with Virtual Scrolling**.
 

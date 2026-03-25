@@ -48,34 +48,76 @@ To handle large numbers of tasks efficiently, I implemented virtual scrolling.
 
 Instead of rendering all items at once, only the visible items (plus a small buffer) are rendered. A fixed-height container and calculated scroll offsets maintain the correct scrollbar behavior, making the optimization invisible to the user.
 
+ 
 
 ### Drag-and-Drop Approach
 
-I used a library-based drag-and-drop solution to handle interactions smoothly.
+I implemented drag-and-drop **from scratch without using any external library**.
 
-The workflow follows a source → destination model:
-- Capture the `onDragEnd` event  
-- Update Zustand store optimistically  
-- Re-render only necessary components  
+The interaction is handled using native mouse events:
+- `onMouseDown` → Start tracking the drag  
+- `onMouseMove` → Update position based on cursor movement  
+- `onMouseUp` → Drop the item and update state  
 
+I used React’s `useState` to track:
+- Current mouse coordinates  
+- Active (dragged) item  
+- Offset position for smooth movement  
 
-##  The "Hardest UI Problem" Explanation
+This gave me full control over the drag behavior and avoided the overhead of third-party libraries.
 
-The toughest challenge was combining **Drag-and-Drop with Virtual Scrolling**.
+For visual feedback, I used Tailwind CSS to:
+- Highlight the dragged item  
+- Show hover states for drop zones  
+- Add smooth transitions during movement  
 
-Normally, virtualized lists unmount items that go off-screen. But during a drag, this causes issues if the dragged element disappears.
+---
+
+## 📝 The "Hardest UI Problem" Explanation
+
+The toughest challenge was combining **custom Drag-and-Drop with Virtual Scrolling**.
+
+Since I built drag-and-drop manually, handling it alongside virtualization was even more complex.
+
+### Problem:
+
+Virtual scrolling removes elements from the DOM when they go off-screen.  
+During a drag, this could cause the active item to disappear if it leaves the visible area.
+
+---
 
 ### Solution:
 
-- Ensured the dragged item **stays mounted** using refs  
-- Prevented virtualizer from removing the active element  
-- Added a **placeholder ("ghost") div** with the same height to avoid layout shifts  
+- Kept track of the dragged item using state so it remains controlled independently  
+- Ensured the active dragged element **stays mounted**, regardless of scroll position  
+- Used a **"ghost" placeholder div** with the same height to prevent layout shifts  
+- Continuously updated position using mouse coordinates for smooth dragging  
+
+---
 
 ### Performance Optimization:
 
-- Used `transform: translate()` instead of `top/left`
-- Avoided layout reflows
-- Ensed smooth, lag-free dragging
+- Used `transform: translate()` for movement instead of `top/left`  
+- Avoided layout reflows and unnecessary repaints  
+- Minimized re-renders by updating only affected components  
+
+---
+
+### Why this approach?
+
+Building drag-and-drop manually helped me:
+- Understand low-level DOM interactions  
+- Optimize performance exactly where needed  
+- Avoid dependency limitations with virtualization  
+
+---
+
+### One thing I'd refine further:
+
+I would improve edge-case handling like:
+- Fast scrolling during drag  
+- Dragging across multiple columns more smoothly  
+- Better auto-scroll when reaching container edges  
 
 ---
 

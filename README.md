@@ -9,7 +9,7 @@ Currently, two official plugins are available:
 
 ##  Deployment & Links
 
-- Live Demo:project-tracker-yg5g.vercel.app
+- Live Demo:  [project-tracker-yg5g.vercel.app](https://project-tracker-yg5g.vercel.app)
   
 
 
@@ -30,10 +30,10 @@ npm run dev
 
 # Build for production
 npm run build
-```
 
 
-## 🧠 Technical Breakdown
+
+##  Technical Breakdown
 
 ### State Management: Why Zustand?
 
@@ -79,7 +79,7 @@ Normally, virtualized lists unmount items that go off-screen. But during a drag,
 
 ---
 
-## 🔄 Future Improvements
+##  Future Improvements
 
 With more time, I would implement **Undo/Redo functionality**.
 
@@ -92,16 +92,17 @@ This would significantly improve usability and make the app feel more polished.
 
 ---
 
-## 📊 Performance & Quality
+## Performance & Quality
 
 ### Lighthouse Report
+![perform](https://github.com/user-attachments/assets/0c0b2bb8-6fa3-42c1-9e49-89cad4fa97af)
 
-![WhatsApp Image 2026-03-25 at 12 42 42](https://github.com/user-attachments/assets/bb374865-bd57-431e-9fcb-731bc7b5ce4f)
+
 
 
 ---
 
-## 📦 Tech Stack
+##  Tech Stack
 
 - React  
 - Vite  
@@ -111,6 +112,6 @@ This would significantly improve usability and make the app feel more polished.
 
 ---
 
-## 📌 Author
+##  Author
 
 **Kausthuv Narayan Medhi**
